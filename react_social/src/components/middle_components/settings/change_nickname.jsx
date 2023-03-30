@@ -32,7 +32,6 @@ class ChangeNickname extends Component {
     }
     
     render() {
-
       let changeNicknameRef = React.createRef();
 
       let changeNickname = () => {

@@ -95,7 +95,6 @@ let store = {
     },
 
     addPostF (message) {
-        debugger
         let nickname = this.state.avatar[0].nickname
 
         let newPost = {
@@ -115,9 +114,7 @@ let store = {
         // store.getState.avatar.push(newNickname);
 
     // dispatch(action){
-    //     if(action.type === ''){
-            
-    //     }
+    //     this.RerenderTree(this._state)
     // }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../middle.css';
 import img from '../../images/friends_avatar.jpg';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 // props.setUsers(
 //     {id: 1, avatar:{img}, followed: false, username: 'Pa1n', location:{country:'Ukraine', city:'Kiev'}},
@@ -11,68 +12,62 @@ import axios from 'axios';
 
 class Users extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            users: []
-        }
-
-        this.state.users.length == 0 ? <div>Loading...</div> : <div>Loading...</div>
-
+    componentDidMount(){
         axios.get(
             `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersCount}`
             )
         .then( (res) => {
-            this.setState({
-                users: res.data.items
-            })
+            this.props.setUsers(
+                res.data.items
+            )
         })
     }
 
-    
+
     pageChanger = (pageNumber) => {
-        this.props.currentPage(pageNumber);
+        this.props.setCurrentPage(pageNumber);
 
         axios.get(
             `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersCount}`
             )
         .then( (res) => {
-            this.setState({
-                users: res.data.items
-            })
+            this.props.setUsers(
+                res.data.items
+            )
         })
     }
 
     render() {
 
-        const {users} = this.state;
-
-        let pageCount = Math.ceil(20/this.props.usersCount);
+        let pageCount = Math.ceil(this.props.totalUsersCount/this.props.usersCount);
 
         let pages = [];
 
         for(let i=1; i<=pageCount; i++){
             pages.push(i);
         }
-
+        debugger
         return (
             <div className='users'>
 
                 <div className='users-pages'>
 
                     {pages.map(p => {
-                        return <span className={this.props.currentPage === p && 'selected_user_page'}
-                        onClick={(e) => {this.pageChanger(p)}} >
+                        return <span key={p} className={this.props.currentPage === p && 'selected_user_page'}
+                        onClick={(e) => {this.pageChanger(p)}}>
                             {p}
                         </span>
                     })}
 
                 </div>
 
-                {users.map(u => 
-                    <div className='user'>
+                {this.props.users.length == 0 ? <div className="lds-facebook"><div></div><div></div><div></div></div> : 
+                this.props.users.map(u => 
+                    <div className='user' key={u.id}>
 
-                        <img src={img}/>
+                        <NavLink to={`/profile/${u.id}`}>
+                            {u.photos.large == null ? <img className='user-photo' src={img}/> : <img src={u.photos.large}/>}
+                        </NavLink>
 
                         <div className='user-info'>
                             <p className='user-id'>id: {u.id}</p>
@@ -88,6 +83,7 @@ class Users extends Component {
 
                     </div>
                 )}
+                
             </div>
         );
     }

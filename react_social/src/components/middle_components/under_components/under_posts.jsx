@@ -1,6 +1,7 @@
 import React from 'react';
 
 const UnderPosts = (props) => {
+    debugger
     return (
         <div className='underPosts'>
             <div className="post_block">

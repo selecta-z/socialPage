@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import './index.css';
+// import App from './App';
 
-import { Provider } from 'react-redux'
+// import { Provider } from 'react-redux'
 
-export let RerenderTree = (store) => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(
+// export let RerenderTree = (store) => {
+//   const root = ReactDOM.createRoot(document.getElementById('root'));
+//   root.render(
 
 
-    <React.StrictMode>
-      {/* <Provider store={store}> */}
-        <App state={store.state} changeNicknameF={store.changeNicknameF} addPostF={store.addPostF}/>
-      {/* </Provider> */}
-    </React.StrictMode>
-  );
-};
+//     <React.StrictMode>
+//       {/* <Provider store={store}> */}
+//         <App state={store.state} changeNicknameF={store.changeNicknameF} addPostF={store.addPostF}/>
+//       {/* </Provider> */}
+//     </React.StrictMode>
+//   );
+// };
 
-// dispatch={store.dispatch.bind(store)}
+// // dispatch={store.dispatch.bind(store)}

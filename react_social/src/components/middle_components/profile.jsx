@@ -1,28 +1,16 @@
 import React from 'react';
-import '../middle.css';
-
-import img from '../../images/settings.png';
-
-import UnderProfile from './under_components/under_profile';
+import UserProfileInfo from './under_components/user-profile-info';
+import OwnProfileInfo from './under_components/own-profile-info';
+import MyPosts from './under_components/my-posts';
 
 const Profile = (props) => {
 
-    let profile_img = props.state.avatar.map(i => <UnderProfile nickname={i.nickname} key={i.id}/>);
-
     return (
-        <div href className='profile'>
-            
-            <a className='settings-btn' href = '/profile/setting'>
-                <img className='settings-img' src={img}/>
-            </a>
+        <div className='profile'>
+            {/* <OwnProfileInfo state={props.state}/> */}
+            <UserProfileInfo state={props.state} profile={props.profile}/>
 
-            <div className="profile-data">
-                <div className='profile_nickname'>
-                    {profile_img}
-                </div>
-            </div>
-            
-            {/* <AddPost/> */}
+            <MyPosts state={props.state}/>
         </div>
     );
 }

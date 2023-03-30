@@ -16,6 +16,8 @@
 .middle-pages-info{
     display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(0deg, rgba(255,3,67,0.5491946778711485) 23%, rgba(175,14,146,1) 64%);
     width: 80%;
     height: 600px;
